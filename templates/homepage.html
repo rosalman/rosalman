@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home page</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+
+<body>
+    <div class="hero-section">
+        <div id="header">
+            <div id="websiteName">
+                <h2>Random Realm</h2>
+            </div>
+
+            <a href="homePage.html"><img src="/static/images/home.png" class="img-header"></a>
+            <div class="line"></div>
+            <a href="/login"><img src="/static/images/register.png" class="img-header"></a>
+        </div>
+        <div id="inside-img">
+            <div id="welcome">welcome to Random Realm page!</div>
+            <br>
+            <a href="/signup" class="register-button">register Now</a>
+            <div class="ppp">
+                <p class="p-img">Welcome to Random Realm, your one-stop destination for exploring a variety of
+                    intriguing topics, ideas,
+                    and stories. Dive into a world of curiosity where every click brings something new and unexpected!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <img src="/static/images/red.png" class="small-things1">
+        <p class="img-pp">Welcome to Random Realm, a vibrant website designed to spark curiosity and exploration. Our
+            platform offers a
+            variety of categories that cater to diverse interests, ensuring there’s something for everyone. Whether
+            you're
+            seeking inspiration, entertainment, or knowledge, we have you covered!
+
+            In our Lifestyle section, you’ll discover tips and ideas to enhance your daily life. Our Tech & Innovation
+            category keeps you informed about the latest advancements shaping the future. For history enthusiasts, our
+            Historical Highlights dive into intriguing moments and figures from the past. If you love art and
+            creativity,
+            explore Visual Wonders, showcasing breathtaking designs and concepts.</p>
+        <img src="/static/images/white.png" class="small-things2">
+
+        <img src="/static/images/star.png" class="star">
+        <div class="cato-box">
+            <div class="tit">Chose the categories</div>
+
+            <div class="cato">
+                <div>
+                    <div><a href="/animals" class="cato-words">animals</a></div>
+                    <div><a href="/sport" class="cato-words">sport</a></div>
+                    <div><a href="/fitness" class="cato-words">fitness</a></div>
+                    <div><a href="/technology" class="cato-words">technology</a></div>
+                </div>
+                <div>
+                    <div><a href="beauty" class="cato-words">beauty</a></div>
+                    <div><a href="/food" class="cato-words">food</a></div>
+                    <div><a href="/art" class="cato-words">art</a></div>
+                    <div><a href="/music" class="cato-words">music</a></div>
+                </div>
+                <div>
+                    <div><a href="/jobs" class="cato-words">jobs</a></div>
+                    <div><a href="/finance" class="cato-words">finance and business</a></div>
+                    <div><a href="/travel" class="cato-words">travel</a></div>
+                    <div><a href="/health" class="cato-words">health</a></div>
+                </div>
+            </div>
+            
+        </div>
+        <img src="/static/images/pink2.png" class="pink"> <br>
+        <br><br><br><br><br><br><br><br>
+
+
+        <div>
+            <footer class="footer">
+                <div class="footer-content">
+                  <div class="copyright">
+                    <p>&copy; 2024 Random Realm. All rights reserved.</p>
+                  </div>
+                  <div class="contact-info">
+                    <div class="phone">
+                      <i class="fas fa-phone"></i>
+                      <span>+1 234 567 8900</span>
+                    </div>
+                    <div class="instagram">
+                      <i class="fab fa-instagram"></i>
+                      <span>@random_realm</span>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+
+        </div>
+</body>
+
+</html>
+
+<script>
+document.querySelector('button').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const response = await fetch('/your-endpoint', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    // Handle the response here
+});
+</script>

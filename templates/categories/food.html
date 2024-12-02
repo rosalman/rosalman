@@ -1,0 +1,47 @@
+<!-- assets/templates/layout.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animals</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+<body>
+    <div id="background-header">
+        <div id="header">
+            <div id="websiteName">
+                <h2>Random Realm</h2>
+            </div>
+            <a href="/"><img src="/static/images/home.png" class="img-header"></a>
+            <div class="line"></div>
+            <a href="/login"><img src="/static/images/register.png" class="img-header"></a>
+        </div>
+        </div>
+
+    <div id="content">
+        {{template "content" .}}
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="copyright">
+                <p>&copy; 2024 Random Realm. All rights reserved.</p>
+            </div>
+            <div class="contact-info">
+                <div class="phone">
+                    <i class="fas fa-phone"></i>
+                    <span>+1 234 567 8900</span>
+                </div>
+                <div class="instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>@random_realm</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

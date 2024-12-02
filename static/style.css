@@ -1,0 +1,448 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(250, 215, 229, 0.589);
+}
+
+
+/* -----------------------------------------------------the header---------------------------------------------- */
+
+
+
+#header {
+    display: flex;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    
+
+}
+
+
+
+.links {
+    margin: 0.2em;
+    width: 20px;
+
+}
+
+.img-header {
+    width: 3em;
+}
+
+
+.line {
+    height: 27px;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.53);
+    margin: 0 10px;
+}
+
+#websiteName {
+    margin: 0.8em;
+    color: rgb(100, 99, 100);
+    font-size: 1em;
+    margin-right: 75%;
+
+}
+
+
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url("images/download.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#welcome {
+    font-size: 2em;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: bolder;
+    color: rgb(154, 80, 133);
+    margin-left: 0.3em;
+    text-transform: capitalize;
+
+}
+
+#inside-img {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    top: 11em;
+    animation: move-down 1.5s ease-in-out;
+    /* Smooth animation on page load */
+    opacity: 1;
+    /* Ensure visibility after animation */
+    transform: translateY(0);
+    /* Reset position after animation */
+}
+
+.register-button {
+    text-align: center;
+    margin-top: 1.5em;
+    /* background-color: rgb(251, 217, 244); */
+    font-size: 1.5em;
+    border: 2px solid;
+    font-weight: bold;
+    color: rgb(154, 80, 133);
+    border-radius: 20px;
+    width: 8em;
+    /* Increased width to accommodate the arrow */
+    height: 2.5em;
+    /* Adjust height for better appearance */
+    display: flex;
+    align-items: center;
+    /* Centers text and arrow vertically */
+    justify-content: center;
+    /* Centers content horizontally */
+    text-decoration: none;
+    /* Removes underline */
+    margin-left: 2em;
+    cursor: pointer;
+    /* Pointer effect on hover */
+    position: relative;
+    /* Required for pseudo-element positioning */
+    overflow: hidden;
+    /* Ensures the arrow doesn't overflow the button */
+}
+
+.register-button::after {
+    content: "→";
+    /* Unicode arrow character */
+    font-size: 1em;
+    color: rgb(154, 80, 133);
+    /* Matches text color */
+    margin-left: 0.5em;
+    /* Adds spacing between text and arrow */
+    transition: transform 0.3s ease;
+    /* Smooth animation on hover */
+}
+
+.register-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    /* Light black hover effect */
+}
+
+.register-button:hover::after {
+    transform: translateX(5px);
+    /* Moves the arrow slightly on hover */
+}
+
+
+.p-img {
+    color: rgb(154, 80, 133);
+    font-size: 1.2em;
+    margin-left: 0.5em;
+    margin-top: 2em;
+
+}
+
+.ppp {
+    width: 90%;
+}
+
+
+/* Animation for smooth movement */
+@keyframes move-down {
+    0% {
+        transform: translateY(-50px);
+        /* Start slightly above */
+        opacity: 0;
+        /* Start invisible */
+    }
+
+    100% {
+        transform: translateY(0);
+        /* End at original position */
+        opacity: 1;
+        /* Fully visible */
+    }
+}
+
+/* under head */
+
+
+.small-things1 {
+    width: 15em;
+    margin: 1em 0em 0em 1em;
+
+}
+
+.small-things2 {
+    width: 15em;
+    float: right;
+    margin: 0em 1em 7em 0em;
+}
+
+
+.img-pp {
+    margin: 1em 8em 0em 8em;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(94, 92, 92);
+    line-height: 2em;
+}
+
+.tit {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: rgb(130, 40, 45);
+    text-align: center;
+    margin-top: 1em;
+    /* Adjust distance from the top */
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.cato-box {
+    width: 80%;
+    height: 35em;
+    display: flex;
+    flex-direction: column;
+    /* Arrange children vertically */
+    align-items: center;
+    /* Center horizontally */
+    justify-content: flex-start;
+    /* Start at the top */
+    text-align: center;
+    margin: auto;
+    border: 3px solid rgb(184, 50, 75);
+    background-color: rgba(125, 95, 109, 0.128);
+    border-radius: 10px;
+}
+
+.cato {
+    display: flex;
+
+}
+
+.cato-words {
+    text-align: center;
+    margin-top: 1.5em;
+    /* background-color: rgb(251, 217, 244); */
+    font-size: 1.5em;
+    border: 2px solid;
+    font-weight: bold;
+    color: rgb(130, 40, 45);
+    border-radius: 20px;
+    width: 8em;
+    /* Increased width to accommodate the arrow */
+    height: 2.5em;
+    /* Adjust height for better appearance */
+    display: flex;
+    align-items: center;
+    /* Centers text and arrow vertically */
+    justify-content: center;
+    /* Centers content horizontally */
+    text-decoration: none;
+    /* Removes underline */
+    margin-left: 2em;
+    cursor: pointer;
+    /* Pointer effect on hover */
+    position: relative;
+    /* Required for pseudo-element positioning */
+    overflow: hidden;
+    /* Ensures the arrow doesn't overflow the button */
+}
+
+
+.star {
+    width: 15em;
+    height: 15em;
+    position: relative;
+    top: 14em;
+    left: 1em;
+}
+
+.pink {
+    width: 13em;
+    height: 13em;
+    float: right;
+    position: relative;
+    bottom: 10em;
+    right: 2em;
+}
+
+#background-header{
+    background-color: rgba(22, 21, 22, 0.18);
+
+}
+
+/* register */
+section {
+    position: relative;
+    max-width: 400px;
+    background-color: transparent;
+    border: 2px solid rgba(243, 223, 234, 0.838);
+    border-radius: 20px;
+    backdrop-filter: blur(55px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 3rem;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    background-color: rgb(158, 62, 132);
+}
+
+h1 {
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+}
+
+.inputbox {
+    position: relative;
+    margin: 30px 0;
+    max-width: 310px;
+    border-bottom: 2px solid #fff;
+}
+
+.inputbox label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+}
+
+input:focus ~ label, 
+input:valid ~ label {
+    top: -5px;
+}
+
+.inputbox input {
+    width: 100%;
+    height: 60px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 35px 0 5px;
+    color: #fff;
+}
+
+.inputbox ion-icon {
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2rem;
+    top: 20px;
+}
+
+.forget {
+    margin: 35px 0;
+    font-size: 0.85rem;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+ 
+}
+
+.forget label {
+    display: flex;
+    align-items: center;
+}
+
+.forget label input {
+    margin-right: 3px;
+}
+
+.forget a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.forget a:hover {
+    text-decoration: underline;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background-color: rgb(255, 255,255, 1);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+
+button:hover {
+  background-color: rgb(255, 255,255, 0.5);
+}
+
+.register {
+    font-size: 0.9rem;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.register p a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.register p a:hover {
+    text-decoration: underline;
+}                                         
+            
+
+/* -----------------------------------------------------the footer---------------------------------------------- */
+
+
+.footer {
+    background-color: rgba(158, 62, 132, 0.9);  /* Matching your purple theme */
+    color: #fff;
+    padding: 20px 0;
+    margin-top: auto;
+    width: 100%;
+    border-top: 2px solid rgba(243, 223, 234, 0.838);  /* Matching your border style */
+    backdrop-filter: blur(55px);
+    border-radius: 20px 20px 0 0;
+}
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+.contact-info {
+    display: flex;
+    gap: 30px;
+}
+.phone, .instagram {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+.phone:hover, .instagram:hover {
+    color: rgba(243, 223, 234, 0.838);  /* Light pink on hover */
+}
+.phone i, .instagram i {
+    font-size: 18px;
+}
+.copyright {
+    color: #fff;
+}

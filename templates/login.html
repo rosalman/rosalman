@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+
+    <title>login</title>
+</head>
+<body>
+    <div id="background-header">
+    <div id="header">
+        <div id="websiteName">
+            <h2>Random Realm</h2>
+        </div>
+
+        <a href="homePage.html"><img src="/static/images/home.png" class="img-header"></a>
+        <div class="line"></div>
+        <a href="/login"><img src="/static/images/register.png" class="img-header"></a>
+    </div>
+    </div>
+
+
+    <section>
+        <form>
+            <h1>Log in</h1>
+            <div class="inputbox">
+                <ion-icon name="mail-outline"></ion-icon>
+                <input type="text" required>
+                <label for="">User Name</label>
+            </div>
+            <div class="inputbox">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input type="password" required>
+                <label for="">Passowrd</label>
+            </div>
+            <div class="forget">
+                <label for=""><input type="checkbox">remember me</label>
+                <a href="#">forgot password?</a>
+            </div>
+            <button>Log in</button>
+            <div class="register">
+                <p>or <a href="/signup">create an account</a></p>
+            </div>
+        </form>
+    </section>
+    
+</body>
+</html>
