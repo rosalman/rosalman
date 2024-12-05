@@ -1,3 +1,12 @@
+package main
+
+import (
+	"fmt"
+	internal "forum/internal"
+	"log"
+	"net/http"
+)
+
 func main() {
 	internal.Init()
 
