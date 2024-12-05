@@ -27,10 +27,10 @@ func main() {
 	http.HandleFunc("/technology", internal.CategoryHandler)
     http.HandleFunc("/travel", internal.CategoryHandler)
 
-	// Routes for posts and comments
-	http.HandleFunc("/posts/create", internal.CreatePostHandler(db))     // Pass db to handler
-	http.HandleFunc("/comments/create", internal.CreateCommentHandler(db)) // Pass db to handler
-	http.HandleFunc("/posts", internal.DisplayPostsHandler(db)) 
+	// New Routes for Posts and Comments
+	http.HandleFunc("/posts/create", internal.CreatePostHandler)
+	http.HandleFunc("/comments/create", internal.CreateCommentHandler)
+	http.HandleFunc("/posts", internal.DisplayPostsHandler)
 
 	// Serve static files for CSS
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
