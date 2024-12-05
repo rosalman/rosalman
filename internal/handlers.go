@@ -21,7 +21,93 @@ func HomepageHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	t.Execute(w, nil)
 }
+
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method == http.MethodGet {
+        // Render the login page for GET requests
+        t, err := template.New("login.html").ParseFiles("templates/login.html")
+        if err != nil {
+            http.Error(w, err.Error(), http.StatusInternalServerError)
+            return
+        }
+        t.Execute(w, nil)
+        return
+    }
+
+    if r.Method != http.MethodPost {
+        // Reject non-POST requests with an error
+        http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+        return
+    }
+
+    var username, password string
+
+    // Detect content type and parse accordingly
+    if r.Header.Get("Content-Type") == "application/json" {
+        var loginReq LoginRequest
+        err := json.NewDecoder(r.Body).Decode(&loginReq)
+        if err != nil {
+            http.Error(w, "Invalid request payload", http.StatusBadRequest)
+            return
+        }
+        username, password = loginReq.Username, loginReq.Password
+    } else {
+        // Default to form-encoded handling
+        err := r.ParseForm()
+        if err != nil {
+            http.Error(w, "Failed to parse form data", http.StatusBadRequest)
+            return
+        }
+        username = r.FormValue("username")
+        password = r.FormValue("password")
+    }
+
+    // Query the database for the user
+    var user User // Use the User struct to hold the data
+    query := `SELECT user_id, username, email, password, created_at FROM users WHERE username = ?`
+    err := db.QueryRow(query, username).Scan(&user.UserID, &user.Username, &user.Email, &user.PasswordHash, &user.CreationDate)
+    if err != nil {
+        if err == sql.ErrNoRows {
+            http.Error(w, "Invalid username or password", http.StatusUnauthorized)
+        } else {
+            http.Error(w, "Database error", http.StatusInternalServerError)
+        }
+        return
+    }
+
+    // Verify the password by comparing the provided password with the stored hashed password
+    err = bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password))
+    if err != nil {
+        http.Error(w, "Invalid username or password", http.StatusUnauthorized)
+        return
+    }
+
+    // Generate a new session token and set expiration time
+    sessionToken := uuid.NewString()                 // Generate a new session token (UUID as string)
+    expirationTime := time.Now().Add(24 * time.Hour) // Set session expiration to 24 hours
+
+    // Insert session data into the sessions table
+    _, err = db.Exec(`INSERT INTO sessions (user_id, session_token, expires_at) VALUES (?, ?, ?)`,
+        user.UserID, sessionToken, expirationTime)
+    if err != nil {
+        http.Error(w, "Failed to create session", http.StatusInternalServerError)
+        return
+    }
+
+    // Set the session cookie
+    http.SetCookie(w, &http.Cookie{
+        Name:     "session_token",
+        Value:    sessionToken,
+        Expires:  expirationTime,
+        Path:     "/",
+        HttpOnly: true, // Ensures cookie is accessible only through HTTP requests (not JavaScript)
+    })
+
+    // Redirect to homepage on successful login
+    http.Redirect(w, r, "/homepage", http.StatusSeeOther)
+}
+
+/* func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	t, err := template.New("login.html").ParseFiles("templates/login.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -98,7 +184,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Respond back to the client with a success message
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "Login successful")
+	fmt.Fprintln(w, "Login successful") */
 
 	/*  sessionToken := uuid.NewString()
 	expirationTime := time.Now().Add(24 * time.Hour)
@@ -119,9 +205,9 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	})
 
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "Login successful") */
-	http.Redirect(w, r, "/homepage", http.StatusSeeOther)
-}
+	fmt.Fprintln(w, "Login successful") 
+	http.Redirect(w, r, "/homepage", http.StatusSeeOther) 
+} */
 
 func SignupHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {

@@ -1,12 +1,3 @@
-package main
-
-import (
-	"fmt"
-	internal "forum/internal"
-	"log"
-	"net/http"
-)
-
 func main() {
 	internal.Init()
 
@@ -26,6 +17,11 @@ func main() {
 	http.HandleFunc("/sport", internal.CategoryHandler)
 	http.HandleFunc("/technology", internal.CategoryHandler)
     http.HandleFunc("/travel", internal.CategoryHandler)
+
+	// New Routes for Posts and Comments
+	http.HandleFunc("/posts/create", internal.CreatePostHandler)
+	http.HandleFunc("/comments/create", internal.CreateCommentHandler)
+	http.HandleFunc("/posts", internal.DisplayPostsHandler)
 
 	// Serve static files for CSS
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))

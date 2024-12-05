@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="static/style.css">
 
-    <title>login</title>
+    <title>Login</title>
 </head>
 <body>
     <div id="background-header">
@@ -20,30 +20,35 @@
     </div>
     </div>
 
-
     <section>
-        <form>
+        <!-- Add method and action attributes -->
+        <form method="POST" action="/login">
             <h1>Log in</h1>
+
+            <!-- Add name attributes to inputs -->
             <div class="inputbox">
                 <ion-icon name="mail-outline"></ion-icon>
-                <input type="text" required>
+                <input type="text" name="username" required>
                 <label for="">User Name</label>
             </div>
+
             <div class="inputbox">
                 <ion-icon name="lock-closed-outline"></ion-icon>
-                <input type="password" required>
-                <label for="">Passowrd</label>
+                <input type="password" name="password" required>
+                <label for="">Password</label>
             </div>
+
             <div class="forget">
-                <label for=""><input type="checkbox">remember me</label>
-                <a href="#">forgot password?</a>
+                <label for=""><input type="checkbox">Remember me</label>
+                <a href="#">Forgot password?</a>
             </div>
-            <button>Log in</button>
+
+            <button type="submit">Log in</button>
+
             <div class="register">
                 <p>or <a href="/signup">create an account</a></p>
             </div>
         </form>
     </section>
-    
 </body>
 </html>

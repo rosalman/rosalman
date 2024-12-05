@@ -24,3 +24,29 @@ type Session struct {
     Username  string    `json:"username"`    // Username of the logged-in user
     Expires   time.Time `json:"expires"`     // Expiration time of the session
 }
+type PostRequest struct {
+    Title      string   `json:"title"`
+    Content    string   `json:"content"`
+    Categories []int    `json:"categories"` // IDs of associated categories
+}
+
+type CommentRequest struct {
+    PostID  int    `json:"post_id"`
+    Comment string `json:"comment"`
+}
+
+type PostResponse struct {
+    ID        int       `json:"id"`
+    Title     string    `json:"title"`
+    Content   string    `json:"content"`
+    Author    string    `json:"author"`
+    CreatedAt time.Time `json:"created_at"`
+    Comments  []CommentResponse `json:"comments"`
+}
+
+type CommentResponse struct {
+    ID        int       `json:"id"`
+    Text      string    `json:"text"`
+    Author    string    `json:"author"`
+    CreatedAt time.Time `json:"created_at"`
+}
