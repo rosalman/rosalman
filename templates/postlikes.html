@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React to Post</title>
+</head>
+<body>
+    <h1>React to Post</h1>
+    <form id="reactionForm" action="/react-to-post" method="POST">
+        <label for="post_id">Post ID:</label>
+        <input type="number" id="post_id" name="post_id" required><br><br>
+
+        <label for="reaction">Reaction:</label>
+        <select id="reaction" name="reaction" required>
+            <option value="like">Like</option>
+            <option value="dislike">Dislike</option>
+        </select><br><br>
+
+        <button type="submit">Submit Reaction</button>
+    </form>
+
+    <script>
+        // You can use this script to make sure the session is managed or handled with cookies if necessary.
+        // For now, the form uses standard POST request for form submission.
+    </script>
+</body>
+</html>

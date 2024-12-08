@@ -60,16 +60,25 @@ func Init() {
 			FOREIGN KEY (post_id) REFERENCES posts(post_id),
 			FOREIGN KEY (category_id) REFERENCES categories(category_id)
 		)`,
-		`CREATE TABLE IF NOT EXISTS likes (
-			like_id INTEGER PRIMARY KEY AUTOINCREMENT,
+		`CREATE TABLE IF NOT EXISTS post_reactions (
+			reaction_id INTEGER PRIMARY KEY AUTOINCREMENT,
+			post_id INTEGER NOT NULL,
 			user_id INTEGER NOT NULL,
-			post_id INTEGER,
-			comment_id INTEGER,
-			is_like BOOLEAN NOT NULL,
+			reaction TEXT CHECK(reaction IN ('like', 'dislike')) NOT NULL,
 			created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-			FOREIGN KEY (user_id) REFERENCES users(user_id),
+			UNIQUE(post_id, user_id), -- Ensure a user reacts to a post only once
 			FOREIGN KEY (post_id) REFERENCES posts(post_id),
-			FOREIGN KEY (comment_id) REFERENCES comments(comment_id)
+			FOREIGN KEY (user_id) REFERENCES users(user_id)
+		)`,
+		`CREATE TABLE IF NOT EXISTS comment_reactions (
+			reaction_id INTEGER PRIMARY KEY AUTOINCREMENT,
+			comment_id INTEGER NOT NULL,
+			user_id INTEGER NOT NULL,
+			reaction TEXT CHECK(reaction IN ('like', 'dislike')) NOT NULL,
+			created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+			UNIQUE(comment_id, user_id), -- Ensure a user reacts to a comment only once
+			FOREIGN KEY (comment_id) REFERENCES comments(comment_id),
+			FOREIGN KEY (user_id) REFERENCES users(user_id)
 		)`,
 		`CREATE TABLE IF NOT EXISTS sessions (
 			session_id INTEGER PRIMARY KEY AUTOINCREMENT,

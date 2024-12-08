@@ -36,17 +36,21 @@ type CommentRequest struct {
 }
 
 type PostResponse struct {
-    ID        int       `json:"id"`
-    Title     string    `json:"title"`
-    Content   string    `json:"content"`
-    Author    string    `json:"author"`
-    CreatedAt time.Time `json:"created_at"`
-    Comments  []CommentResponse `json:"comments"`
+	ID        int               `json:"id"`
+	Title     string            `json:"title"`
+	Content   string            `json:"content"`
+	Author    string            `json:"author"`
+	CreatedAt string            `json:"created_at"`
+	Likes     int               `json:"likes"`
+	Dislikes  int               `json:"dislikes"`
+	Comments  []CommentResponse `json:"comments"`
 }
 
 type CommentResponse struct {
-    ID        int       `json:"id"`
-    Text      string    `json:"text"`
-    Author    string    `json:"author"`
-    CreatedAt time.Time `json:"created_at"`
+	ID        int    `json:"id"`
+	Text      string `json:"text"`
+	Author    string `json:"author"`
+	CreatedAt string `json:"created_at"`
+	Likes     int    `json:"likes"`
+	Dislikes  int    `json:"dislikes"`
 }
