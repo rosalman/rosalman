@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .post {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+        .post h2 {
+            margin: 0;
+        }
+        .post .author {
+            font-style: italic;
+            color: #555;
+        }
+        .comments {
+            margin-top: 20px;
+        }
+        .comment {
+            border-left: 2px solid #ccc;
+            padding-left: 10px;
+            margin-top: 10px;
+        }
+        .comment .author {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .comment .created_at {
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Posts</h1>
+
+    {{range .Posts}}
+    <div class="post">
+        <h2>{{.Title}}</h2>
+        <p class="author">By {{.Author}} | Posted on {{.CreatedAt}}</p>
+        <p>{{.Content}}</p>
+
+        <div class="comments">
+            <h3>Comments:</h3>
+            {{range .Comments}}
+            <div class="comment">
+                <p class="author">{{.Author}} <span class="created_at">on {{.CreatedAt}}</span></p>
+                <p>{{.Text}}</p>
+            </div>
+            {{else}}
+            <p>No comments yet.</p>
+            {{end}}
+        </div>
+    </div>
+    {{else}}
+    <p>No posts available.</p>
+    {{end}}
+
+</body>
+</html>

@@ -76,7 +76,7 @@ func CreatePostHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Insert post into the database
-	result, err := db.Exec(`INSERT INTO posts (title, content, author_id) VALUES (?, ?, ?)`,
+	result, err := db.Exec(`INSERT INTO posts (title, content, user_id) VALUES (?, ?, ?)`,
 		postReq.Title, postReq.Content, userID)
 	if err != nil {
 		http.Error(w, "Failed to create post", http.StatusInternalServerError)

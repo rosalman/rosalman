@@ -43,6 +43,8 @@ func main() {
 
 	http.HandleFunc("/profile", internal.ProfileHandler)
 
+	
+
 
 	// Serve static files for CSS
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
