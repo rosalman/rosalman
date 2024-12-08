@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .profile-info {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .profile-info p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .profile-info strong {
+            color: #333;
+        }
+        .edit-profile-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .edit-profile-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .edit-profile-form button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .edit-profile-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>User Profile</h1>
+
+    <div class="profile-info">
+        <p><strong>Username:</strong> {{.Username}}</p>
+        <p><strong>Email:</strong> {{.Email}}</p>
+        <p><strong>Account Created:</strong> {{.CreationDate}}</p>
+    </div>
+
+    <h2>Edit Profile</h2>
+    <form action="/profile/edit" method="POST" class="edit-profile-form">
+        <label for="username">New Username:</label>
+        <input type="text" id="username" name="username" value="{{.Username}}" required>
+
+        <label for="email">New Email:</label>
+        <input type="email" id="email" name="email" value="{{.Email}}" required>
+
+        <label for="password">New Password (leave blank to keep current):</label>
+        <input type="password" id="password" name="password">
+
+        <label for="securityAnswer">Security Answer (optional):</label>
+        <input type="text" id="securityAnswer" name="securityAnswer" value="{{.SecurityAnswer}}">
+
+        
+    </form>
+
+</body>
+</html>

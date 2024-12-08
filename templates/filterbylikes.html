@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .post {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+        .post h2 {
+            margin: 0 0 10px;
+        }
+        .post p {
+            margin: 0 0 5px;
+        }
+        .post time {
+            display: block;
+            font-size: 0.85em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Liked Posts</h1>
+    <div id="postsContainer">
+        <!-- Posts will be dynamically loaded here -->
+    </div>
+
+    <script>
+        // Function to fetch liked posts from the server
+        async function fetchLikedPosts() {
+            try {
+                const response = await fetch('/filter-by-liked-posts', {
+                    method: 'POST', // Match the HTTP method expected in the handler
+                    credentials: 'include', // Include session cookies
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+
+                const posts = await response.json();
+                const postsContainer = document.getElementById('postsContainer');
+                postsContainer.innerHTML = ''; // Clear any existing content
+
+                if (posts.length === 0) {
+                    postsContainer.innerHTML = '<p>No liked posts found.</p>';
+                    return;
+                }
+
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'post';
+                    postElement.innerHTML = `
+                        <h2>${post.title}</h2>
+                        <p>${post.content}</p>
+                        <time>Liked on: ${new Date(post.created_at).toLocaleString()}</time>
+                    `;
+                    postsContainer.appendChild(postElement);
+                });
+            } catch (error) {
+                console.error(error);
+                const postsContainer = document.getElementById('postsContainer');
+                postsContainer.innerHTML = '<p>Error loading liked posts.</p>';
+            }
+        }
+
+        // Fetch liked posts when the page loads
+        fetchLikedPosts();
+    </script>
+</body>
+</html>

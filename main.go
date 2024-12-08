@@ -36,6 +36,13 @@ func main() {
 	http.HandleFunc("/react-to-comment", internal.ReactToCommentHandler)
 	http.HandleFunc("/fetch-post-details", internal.FetchPostDetailsHandler)
 	
+	  // Route for filtering liked posts
+	http.HandleFunc("/filter-by-liked-posts", internal.FilterLikedPostsHandler)
+	   // Route for filtering posts by the logged-in user
+	http.HandleFunc("/filter-by-user-posts", internal.FilterPostsByUserHandler)
+
+	http.HandleFunc("/profile", internal.ProfileHandler)
+
 
 	// Serve static files for CSS
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))

@@ -6,24 +6,23 @@ import (
 	"text/template"
 )
 
-func FilterPostsByUserHandler(w http.ResponseWriter, r *http.Request) {
-    if r.Method == http.MethodGet {
-        // Use the correct path
-        t, err := template.New("filterbypost.html").ParseFiles("templates/filterbypost.html")
-        if err != nil {
-            http.Error(w, err.Error(), http.StatusInternalServerError)
-            return
-        }
-        t.Execute(w, nil)
-        return
-    }
+func FilterLikedPostsHandler(w http.ResponseWriter, r *http.Request) {
 
-	// Handle API requests for filtered posts
+	if r.Method == http.MethodGet {
+		// Serve the HTML page for filtering liked posts
+		t, err := template.New("filterbylikes.html").ParseFiles("templates/filterbylikes.html")
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		t.Execute(w, nil)
+		return
+	}
+
 	if r.Method != http.MethodPost {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
-
 	sessionCookie, err := r.Cookie("session_token")
 	if err != nil {
 		http.Error(w, "Unauthorized: Please log in", http.StatusUnauthorized)
@@ -42,9 +41,10 @@ func FilterPostsByUserHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	rows, err := db.Query(`
-        SELECT id, title, content, created_at 
-        FROM posts 
-        WHERE user_id = ?`, userID)
+        SELECT p.id, p.title, p.content, p.created_at 
+        FROM posts p
+        INNER JOIN post_reactions pr ON p.id = pr.post_id
+        WHERE pr.user_id = ? AND pr.reaction = 'like'`, userID)
 	if err != nil {
 		http.Error(w, "Failed to fetch posts", http.StatusInternalServerError)
 		return
