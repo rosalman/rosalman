@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Created Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .post {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .post h2 {
+            margin: 0 0 10px;
+        }
+        .post p {
+            margin: 5px 0;
+        }
+        .post time {
+            font-size: 0.9em;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Created Posts</h1>
+    <div id="postsContainer">
+        <!-- Posts will be displayed here -->
+    </div>
+
+    <script>
+        // Fetch posts created by the logged-in user
+        async function fetchCreatedPosts() {
+            try {
+                const response = await fetch('/filter-by-created-posts', {
+                    method: 'GET',
+                    credentials: 'include', // Ensure session cookies are sent
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch posts: ${response.statusText}`);
+                }
+
+                const posts = await response.json();
+
+                const postsContainer = document.getElementById('postsContainer');
+                postsContainer.innerHTML = ''; // Clear any existing content
+
+                if (posts.length === 0) {
+                    postsContainer.innerHTML = '<p>No posts found.</p>';
+                    return;
+                }
+
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'post';
+                    postElement.innerHTML = `
+                        <h2>${post.title}</h2>
+                        <p>${post.content}</p>
+                        <time>${new Date(post.created_at).toLocaleString()}</time>
+                    `;
+                    postsContainer.appendChild(postElement);
+                });
+            } catch (error) {
+                console.error(error);
+                document.getElementById('postsContainer').innerHTML = '<p>Error loading posts.</p>';
+            }
+        }
+
+        // Fetch posts on page load
+        fetchCreatedPosts();
+    </script>
+</body>
+</html>

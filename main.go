@@ -35,6 +35,7 @@ func main() {
 	http.HandleFunc("/react-to-post", internal.ReactToPostHandler)
 	http.HandleFunc("/react-to-comment", internal.ReactToCommentHandler)
 	http.HandleFunc("/fetch-post-details", internal.FetchPostDetailsHandler)
+	
 
 	// Serve static files for CSS
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
