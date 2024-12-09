@@ -84,12 +84,13 @@ func CreateCommentHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Insert the comment into the database
-	_, err = db.Exec(`INSERT INTO comments (text, post_id, author_id) VALUES (?, ?, ?)`,
-		commentReq.Comment, commentReq.PostID, userID)
-	if err != nil {
-		http.Error(w, "Failed to add comment", http.StatusInternalServerError)
-		return
-	}
+	_, err = db.Exec(`INSERT INTO comments (content, post_id, user_id) VALUES (?, ?, ?)`,
+    commentReq.Comment, commentReq.PostID, userID)
+if err != nil {
+    http.Error(w, "Failed to add comment", http.StatusInternalServerError)
+    return
+}
+
 
 	// Respond with a success message
 	w.WriteHeader(http.StatusCreated)
